@@ -18,6 +18,14 @@ pipeline {
             }
         }
 
+        stage('Deploy') {
+            steps {
+                sh 'echo "Deploying artifacts..."'
+                sh 'mkdir -p ~/Desktop/ConsoleProject'
+                sh 'cp -r . ~/Desktop/ConsoleProject'
+            }
+        }
+
 
         stage('Restore') {
             steps {
