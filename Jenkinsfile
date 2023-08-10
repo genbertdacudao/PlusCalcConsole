@@ -9,6 +9,12 @@ pipeline {
             }
         }
 
+    stage('Clean') {
+        steps {
+            bat 'dotnet clean'
+        }
+    }
+
        stage('Restore') {
         steps {
             // Restore .NET dependencies
