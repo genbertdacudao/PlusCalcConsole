@@ -12,17 +12,17 @@ pipeline {
         stage('Build') {
             steps {
                 // Restore .NET dependencies
-                sh 'dotnet restore'
+                bat 'dotnet restore'
                 
                 // Build the .NET project
-                sh 'dotnet build --configuration Release'
+                bat 'dotnet build --configuration Release'
             }
         }
 
         stage('Run Unit Tests') {
             steps {
                 // Run unit tests
-                sh 'dotnet test --configuration Release'
+                bat 'dotnet test --configuration Release'
             }
         }
 
@@ -31,9 +31,9 @@ pipeline {
                 expression { currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
             }
             steps {
-                sh 'echo "Deploying artifacts..."'
-                sh 'mkdir -p ~/Desktop/PlusCalcProject'
-                sh 'cp -r . ~/Desktop/PlusCalcProject'
+                bat 'echo "Deploying artifacts..."'
+                bat 'mkdir -p ~/Desktop/PlusCalcProject'
+                bat 'cp -r . ~/Desktop/PlusCalcProject'
             }
         }
     }
