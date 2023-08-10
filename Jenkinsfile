@@ -18,6 +18,14 @@ pipeline {
             }
         }
 
+
+        stage('Restore') {
+            steps {
+                // Restore .NET dependencies
+                sh 'dotnet restore'
+            }
+        }
+
         stage('Deploy') {
             steps {
                 sh 'echo "Deploying artifacts..."'
@@ -33,13 +41,6 @@ pipeline {
                 failure {
                     error "Deployment failed."
                 }
-            }
-        }
-
-        stage('Restore') {
-            steps {
-                // Restore .NET dependencies
-                sh 'dotnet restore'
             }
         }
 
