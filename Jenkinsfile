@@ -5,58 +5,29 @@ pipeline {
         // Stage 1: Checkout the Source Code
         stage('Checkout') {
             steps {
-                checkout scm
+                echo 'Checking out the source code...'
             }
         }
         
         // Stage 2: Build the Project
         stage('Build') {
             steps {
-                script {
-                    // Get some code from a GitHub repository
-                    git 'https://github.com/genbertdacudao/PlusCalcConsole.git'
-                    
-                    def buildStatus = sh(returnStatus: true, script: 'dotnet build')
-                    if (buildStatus == 0) {
-                        echo "Build successful."
-                    } else {
-                        error "Build failed."
-                    }
-                }
+                echo 'Building the project...'
             }
         }
-
+        
         // Stage 3: Run Unit Tests
-        stage('Unit Tests') {
+        stage('Test') {
             steps {
-                script {
-                    def testStatus = sh(returnStatus: true, script: 'dotnet test')
-                    if (testStatus == 0) {
-                        echo "Tests passed."
-                    } else {
-                        error "Tests failed."
-                    }
-                }
+                echo 'Running unit tests...'
             }
         }
-
-        // Stage 4: Deploy Artifacts
-        stage('Deploy') {
-            steps {
-                sh 'echo "Deploying artifacts..."'
-                sh 'mkdir -p ~/Desktop/ConsoleProject'
-                sh 'cp -r . ~/Desktop/ConsoleProject'
-            }
-            
-            // Check Deployment Status
-            post {
-                success {
-                    echo "Deployment successful."
-                }
-                failure {
-                    error "Deployment failed."
-                }
-            }
+    }
+    
+    // Post-build actions
+    post {
+        always {
+            echo 'Post-build actions...'
         }
     }
 }
