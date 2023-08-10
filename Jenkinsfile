@@ -9,11 +9,15 @@ pipeline {
             }
         }
 
+       stage('Restore') {
+        steps {
+            // Restore .NET dependencies
+            bat 'dotnet restore'
+        }
+    }
+
         stage('Build') {
-            steps {
-                // Restore .NET dependencies
-                bat 'dotnet restore'
-                
+            steps {                
                 // Build the .NET project
                 bat 'dotnet build --configuration Release'
             }
