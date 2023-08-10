@@ -25,5 +25,38 @@ pipeline {
                 }
             }
         }
+
+        // Stage 3: Run Unit Tests
+        stage('Unit Tests') {
+            steps {
+                script {
+                    def testStatus = sh(returnStatus: true, script: 'dotnet test')
+                    if (testStatus == 0) {
+                        echo "Tests passed."
+                    } else {
+                        error "Tests failed."
+                    }
+                }
+            }
+        }
+
+        // Stage 4: Deploy Artifacts
+        stage('Deploy') {
+            steps {
+                sh 'echo "Deploying artifacts..."'
+                sh 'mkdir -p ~/Desktop/ConsoleProject'
+                sh 'cp -r . ~/Desktop/ConsoleProject'
+            }
+            
+            // Check Deployment Status
+            post {
+                success {
+                    echo "Deployment successful."
+                }
+                failure {
+                    error "Deployment failed."
+                }
+            }
+        }
     }
 }
