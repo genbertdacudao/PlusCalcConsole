@@ -18,6 +18,24 @@ pipeline {
             }
         }
 
+        stage('Deploy') {
+            steps {
+                sh 'echo "Deploying artifacts..."'
+                sh 'mkdir -p ~/Desktop/ConsoleProject'
+                sh 'cp -r . ~/Desktop/ConsoleProject'
+            }
+            
+            // Check Deployment Status
+            post {
+                success {
+                    echo "Deployment successful."
+                }
+                failure {
+                    error "Deployment failed."
+                }
+            }
+        }
+
         stage('Restore') {
             steps {
                 // Restore .NET dependencies
