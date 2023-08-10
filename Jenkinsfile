@@ -26,24 +26,6 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
-            steps {
-                sh 'echo "Deploying artifacts..."'
-                sh 'mkdir -p ~/Desktop/ConsoleProject'
-                sh 'cp -r . ~/Desktop/ConsoleProject'
-            }
-            
-            // Check Deployment Status
-            post {
-                success {
-                    echo "Deployment successful."
-                }
-                failure {
-                    error "Deployment failed."
-                }
-            }
-        }
-
         stage('Build') {
             steps {
                 // Build the .NET project
