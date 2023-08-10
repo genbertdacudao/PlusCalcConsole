@@ -9,39 +9,33 @@ pipeline {
             }
         }
 
-        stage('Git Clone') {
-            steps {
-                // Clone the repository using the git step
-                script {
-                    git branch: 'main', url: 'https://github.com/genbertdacudao/PlusCalcConsole.git'
-                }
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                sh 'echo "Deploying artifacts..."'
-                sh 'mkdir -p ~/Desktop/ConsoleProject'
-                sh 'cp -r . ~/Desktop/ConsoleProject'
-            }
-        }
-
-
-        stage('Restore') {
+        stage('Build') {
             steps {
                 // Restore .NET dependencies
                 sh 'dotnet restore'
-            }
-        }
-
-        stage('Build') {
-            steps {
+                
                 // Build the .NET project
                 sh 'dotnet build --configuration Release'
             }
         }
 
-        // Add more stages as needed
+        stage('Run Unit Tests') {
+            steps {
+                // Run unit tests
+                sh 'dotnet test --configuration Release'
+            }
+        }
+
+        stage('Deploy') {
+            when {
+                expression { currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
+            }
+            steps {
+                sh 'echo "Deploying artifacts..."'
+                sh 'mkdir -p ~/Desktop/PlusCalcProject'
+                sh 'cp -r . ~/Desktop/PlusCalcProject'
+            }
+        }
     }
 
     post {
