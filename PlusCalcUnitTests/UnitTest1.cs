@@ -35,60 +35,6 @@ namespace PlusCalcUnitTests
         }
 
         [TestMethod]
-        public void TestMethod2()
-
-        {
-            // Redirect console output for testing
-            StringWriter sw = new StringWriter();
-            Console.SetOut(sw);
-
-            // Provide input values to simulate user input
-            string input = "3" + Environment.NewLine + "1" + Environment.NewLine;
-            StringReader sr = new StringReader(input);
-            Console.SetIn(sr);
-
-            // Run the program
-            PlusCalcConsole.Program.Main(null);
-
-            // Get the output
-            string output = sw.ToString();
-
-            // Assert the output contains the expected result
-            StringAssert.Contains(output, "The sum of 3 and 1 is: 5");
-
-            // Clean up
-            sw.Close();
-            sr.Close();
-        }
-
-        [TestMethod]
-        public void TestMethod3()
-
-        {
-            // Redirect console output for testing
-            StringWriter sw = new StringWriter();
-            Console.SetOut(sw);
-
-            // Provide input values to simulate user input
-            string input = "2" + Environment.NewLine + "1" + Environment.NewLine;
-            StringReader sr = new StringReader(input);
-            Console.SetIn(sr);
-
-            // Run the program
-            PlusCalcConsole.Program.Main(null);
-
-            // Get the output
-            string output = sw.ToString();
-
-            // Assert the output contains the expected result
-            StringAssert.Contains(output, "The sum of 3 and 1 is: 5");
-
-            // Clean up
-            sw.Close();
-            sr.Close();
-        }
-
-        [TestMethod]
         public void TestMethod4()
 
         {
