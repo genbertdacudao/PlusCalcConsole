@@ -2,32 +2,43 @@ pipeline {
     agent any
 
     stages {
-        // Stage 1: Checkout the Source Code
         stage('Checkout') {
             steps {
-                echo 'Checking out the source code...'
+                // Checkout your source code from Git
+                checkout scm
             }
         }
-        
-        // Stage 2: Build the Project
+
+        stage('Git Clone') {
+            steps {
+                // Clone the repository using the git step
+                script {
+                    git branch: 'main', url: 'https://github.com/genbertdacudao/PlusCalcConsole.git'
+                }
+            }
+        }
+
+        stage('Restore') {
+            steps {
+                // Restore .NET dependencies
+                sh 'dotnet restore'
+            }
+        }
+
         stage('Build') {
             steps {
-                echo 'Building the project...'
+                // Build the .NET project
+                sh 'dotnet build --configuration Release'
             }
         }
-        
-        // Stage 3: Run Unit Tests
-        stage('Test') {
-            steps {
-                echo 'Running unit tests...'
-            }
-        }
+
+        // Add more stages as needed
     }
-    
-    // Post-build actions
+
     post {
         always {
-            echo 'Post-build actions...'
+            // Archive build artifacts or perform other post-build actions
+            archiveArtifacts artifacts: '**/bin/Release/**', allowEmptyArchive: true
         }
     }
 }
