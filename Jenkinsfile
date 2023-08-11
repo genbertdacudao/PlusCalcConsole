@@ -9,30 +9,25 @@ pipeline {
             }
         }
 
-    stage('Clean') {
-        steps {
-            bat 'dotnet clean --configuration Release'
+        stage('Clean') {
+            steps {
+                bat 'dotnet clean --configuration Release'
+            }
         }
-    }
 
-    stage('Restore') {
-        steps {
-             bat 'nuget restore PlusCalcUnitTests/PlusCalcUnitTests.csproj'
+        stage('Restore') {
+            steps {
+                bat 'dotnet restore PlusCalcUnitTests/PlusCalcUnitTests.csproj'
+            }
         }
-    }
    
-    stage('Build and Restore') {
-        steps {
-            dir('PlusCalcUnitTests/') {
-                bat 'dotnet restore PlusCalcUnitTests.csproj'
-                bat 'dotnet build --configuration Release PlusCalcUnitTests.csproj'
-            }
-            dir('PlusCalcConsole/') {
-                bat 'dotnet restore PlusCalcConsole.csproj'
-                bat 'dotnet build --configuration Release PlusCalcConsole.csproj'
+        stage('Build and Restore') {
+            steps {
+                dir('PlusCalcUnitTests/') {
+                    bat 'dotnet build --configuration Release PlusCalcUnitTests.csproj'
+                }
             }
         }
-    }
 
         stage('Run Unit Tests') {
             steps {
