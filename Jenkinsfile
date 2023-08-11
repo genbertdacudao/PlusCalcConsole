@@ -11,23 +11,22 @@ pipeline {
 
     stage('Clean') {
         steps {
-            bat 'dotnet clean'
+            bat 'dotnet clean --configuration Release'
         }
     }
 
-       stage('Restore') {
+    stage('Build and Restore') {
         steps {
-            // Restore .NET dependencies
-            bat 'dotnet restore PlusCalcConsole.sln'
-        }
-    }
-
-        stage('Build') {
-            steps {                
-                // Build the .NET project
-                bat 'dotnet build --configuration Release'
+            dir('path/to/PlusCalcUnitTests') {
+                bat 'dotnet restore PlusCalcUnitTests.csproj'
+                bat 'dotnet build --configuration Release PlusCalcUnitTests.csproj'
+            }
+            dir('path/to/PlusCalcConsole') {
+                bat 'dotnet restore PlusCalcConsole.csproj'
+                bat 'dotnet build --configuration Release PlusCalcConsole.csproj'
             }
         }
+    }
 
         stage('Run Unit Tests') {
             steps {
