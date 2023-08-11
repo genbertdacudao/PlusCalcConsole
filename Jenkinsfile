@@ -18,7 +18,7 @@ pipeline {
        stage('Restore') {
         steps {
             // Restore .NET dependencies
-            bat 'dotnet restore'
+            dotnet restore PlusCalcConsole.sln
         }
     }
 
