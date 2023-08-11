@@ -17,11 +17,11 @@ pipeline {
 
     stage('Build and Restore') {
         steps {
-            dir('path/to/PlusCalcUnitTests') {
+            dir('PlusCalcUnitTests/') {
                 bat 'dotnet restore PlusCalcUnitTests.csproj'
                 bat 'dotnet build --configuration Release PlusCalcUnitTests.csproj'
             }
-            dir('path/to/PlusCalcConsole') {
+            dir('PlusCalcConsole/') {
                 bat 'dotnet restore PlusCalcConsole.csproj'
                 bat 'dotnet build --configuration Release PlusCalcConsole.csproj'
             }
