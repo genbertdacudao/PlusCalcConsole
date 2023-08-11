@@ -15,6 +15,12 @@ pipeline {
         }
     }
 
+    stage('Restore') {
+        steps {
+             bat 'nuget restore PlusCalcUnitTests/PlusCalcUnitTests.csproj'
+        }
+    }
+   
     stage('Build and Restore') {
         steps {
             dir('PlusCalcUnitTests/') {
