@@ -17,7 +17,7 @@ pipeline {
 
         stage('Restore') {
             steps {
-                bat 'dotnet restore PlusCalcUnitTests/PlusCalcUnitTests.csproj'
+                bat 'dotnet restore'
                 bat 'nuget'
             }
         }
