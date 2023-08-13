@@ -9,11 +9,11 @@ pipeline {
             }
         }
 
-        stage('Clean') {
-            steps {
-                bat 'dotnet clean --configuration Release'
-            }
-        }
+        // stage('Clean') {
+        //     steps {
+        //         bat 'dotnet clean --configuration Release'
+        //     }
+        // }
 
         stage('Restore') {
             steps {
@@ -24,9 +24,7 @@ pipeline {
    
         stage('Build') {
             steps {
-                dir('PlusCalcUnitTests/') {
-                    bat 'dotnet build --configuration Release PlusCalcUnitTests.csproj'
-                }
+                bat 'dotnet build --configuration Release PlusCalcUnitTests.csproj'
             }
         }
 
