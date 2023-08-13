@@ -18,10 +18,11 @@ pipeline {
         stage('Restore') {
             steps {
                 bat 'dotnet restore PlusCalcUnitTests/PlusCalcUnitTests.csproj'
+                bat 'nuget'
             }
         }
    
-        stage('Build and Restore') {
+        stage('Build') {
             steps {
                 dir('PlusCalcUnitTests/') {
                     bat 'dotnet build --configuration Release PlusCalcUnitTests.csproj'
