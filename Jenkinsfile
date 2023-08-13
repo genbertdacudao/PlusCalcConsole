@@ -37,7 +37,7 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+        stage('Deploy Artifacts') {
             when {
                 expression { currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
             }
@@ -45,7 +45,8 @@ pipeline {
                 bat 'echo "Deploying artifacts..."'
                 bat "if not exist \"C:\\Users\\Milbert\\Desktop\\PlusCalcProject\" mkdir \"C:\\Users\\Milbert\\Desktop\\PlusCalcProject\""
                 // bat 'mkdir C:\\Users\\Milbert\\Desktop\\PlusCalcProject'
-                bat 'copy .\\* C:\\Users\\Milbert\\Desktop\\PlusCalcProject'
+                // bat 'copy .\\* C:\\Users\\Milbert\\Desktop\\PlusCalcProject'
+                 bat "xcopy /E /Y .\\bin\\Release\\* \"C:\\Users\\Milbert\\Desktop\\PlusCalcProject\""
             }
         }
     }
