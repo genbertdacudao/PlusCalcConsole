@@ -19,6 +19,7 @@ pipeline {
         steps {
             // Restore .NET dependencies
             bat 'dotnet restore'
+            bat 'nuget'
         }
     }
 
