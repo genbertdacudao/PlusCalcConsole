@@ -44,7 +44,7 @@ pipeline {
             steps {
                 bat 'echo "Deploying artifacts..."'
                 bat 'mkdir C:\\Users\\Milbert\\Desktop\\PlusCalcProject'
-                bat 'cp -r . C:/Users/Milbert/Desktop/PlusCalcProject'
+                bat 'cp -r . C:\\Users\\Milbert\\Desktop\\PlusCalcProject'
             }
         }
     }
