@@ -45,7 +45,7 @@ pipeline {
                 bat 'echo "Deploying artifacts..."'
                 bat "if not exist \"C:\\Users\\Milbert\\Desktop\\PlusCalcProject\" mkdir \"C:\\Users\\Milbert\\Desktop\\PlusCalcProject\""
                 // bat 'copy .\\bin\\Release\\* C:\\Users\\Milbert\\Desktop\\PlusCalcProject'
-                bat 'xcopy /E /Y .\\bin\\Release\\* C:\\Users\\Milbert\\Desktop\\PlusCalcProject
+                bat 'xcopy /E /Y .\\bin\\Release\\* C:\\Users\\Milbert\\Desktop\\PlusCalcProject'
                 // bat 'for /r .\\ %%i in (bin\\Release\\*) do copy "%%i" "C:\\Users\\Milbert\\Desktop\\PlusCalcProject\\"'
             }
         }
