@@ -9,22 +9,23 @@ pipeline {
             }
         }
 
-        // stage('Clean') {
-        //     steps {
-        //         bat 'dotnet clean --configuration Release'
-        //     }
-        // }
-
-        stage('Restore') {
-            steps {
-                bat 'dotnet restore'
-                bat 'nuget'
-            }
+    stage('Clean') {
+        steps {
+            bat 'dotnet clean'
         }
-   
+    }
+
+       stage('Restore') {
+        steps {
+            // Restore .NET dependencies
+            bat 'dotnet restore'
+        }
+    }
+
         stage('Build') {
-            steps {
-                bat 'dotnet build --configuration Release PlusCalcUnitTests.csproj'
+            steps {                
+                // Build the .NET project
+                bat 'dotnet build --configuration Release'
             }
         }
 
