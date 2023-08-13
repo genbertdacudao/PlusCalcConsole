@@ -46,7 +46,7 @@ pipeline {
                 bat "if not exist \"C:\\Users\\Milbert\\Desktop\\PlusCalcProject\" mkdir \"C:\\Users\\Milbert\\Desktop\\PlusCalcProject\""
                 // bat 'mkdir C:\\Users\\Milbert\\Desktop\\PlusCalcProject'
                 // bat 'copy .\\* C:\\Users\\Milbert\\Desktop\\PlusCalcProject'
-                // bat 'for /r .\\ %%i in (bin\\Release\\*) do copy "%%i" "C:\\Users\\Milbert\\Desktop\\PlusCalcProject\\"'
+                bat 'for /r .\\ %%i in (bin\\Release\\*) do copy "%%i" "C:\\Users\\Milbert\\Desktop\\PlusCalcProject\\"'
             }
         }
     }
@@ -55,8 +55,6 @@ pipeline {
         always {
             // Archive build artifacts or perform other post-build actions
             archiveArtifacts artifacts: '**/bin/Release/**', allowEmptyArchive: true
-
-            bat "xcopy /E /Y \"${archiveArtifacts artifacts: 'bin/Release/**', allowEmptyArchive: true}\" \"C:\\Users\\Milbert\\Desktop\\PlusCalcProject\\\""
         }
     }
 }
