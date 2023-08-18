@@ -16,7 +16,7 @@ namespace PlusCalcUnitTests
             Console.SetOut(sw);
 
             // Provide input values to simulate user input
-            string input = "3" + Environment.NewLine + "5" + Environment.NewLine;
+            string input = "1" + Environment.NewLine + "2" + Environment.NewLine;
             StringReader sr = new StringReader(input);
             Console.SetIn(sr);
 
