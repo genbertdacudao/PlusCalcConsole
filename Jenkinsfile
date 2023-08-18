@@ -33,7 +33,7 @@ pipeline {
         stage('Run Unit Tests') {
             steps {
                 // Run unit tests
-                bat 'dotnet test --configuration Release'
+                bat 'dotnet test'
             }
         }
 
