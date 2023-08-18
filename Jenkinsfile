@@ -26,14 +26,14 @@ pipeline {
         stage('Build') {
             steps {                
                 // Build the .NET project
-                bat 'dotnet build --configuration Debug --verbosity detailed'
+                bat 'dotnet build --configuration Debug'
             }
         }
 
         stage('Run Unit Tests') {
             steps {
                 // Run unit tests
-                bat 'dotnet test --configuration Debug --verbosity detailed'
+                bat 'dotnet test --configuration Debug'
             }
         }
 
