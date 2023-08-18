@@ -26,7 +26,7 @@ pipeline {
         stage('Build') {
             steps {                
                 // Build the .NET project
-                bat 'dotnet build --configuration Debug'
+                bat 'dotnet build --configuration Debug --verbosity detailed'
             }
         }
 
