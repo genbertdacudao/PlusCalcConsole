@@ -27,7 +27,7 @@ namespace PlusCalcUnitTests
             string output = sw.ToString();
 
             // Assert the output contains the expected result
-            StringAssert.Contains(output, "The sum of 3 and 5 is: 8");
+            StringAssert.Contains(output, "The sum of 1 and 2 is: 3");
 
             // Clean up
             sw.Close();
@@ -54,7 +54,7 @@ namespace PlusCalcUnitTests
             string output = sw.ToString();
 
             // Assert the output contains the expected result
-            StringAssert.Contains(output, "The sum of 3 and 1 is: 5");
+            StringAssert.Contains(output, "The sum of 3 and 1 is: 4");
 
             // Clean up
             sw.Close();
@@ -81,7 +81,7 @@ namespace PlusCalcUnitTests
             string output = sw.ToString();
 
             // Assert the output contains the expected result
-            StringAssert.Contains(output, "The sum of 3 and 1 is: 5");
+            StringAssert.Contains(output, "The sum of 2 and 1 is: 3");
 
             // Clean up
             sw.Close();
